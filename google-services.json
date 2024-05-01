@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "593730418980",
+    "project_id": "zorko-main",
+    "storage_bucket": "zorko-main.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593730418980:android:ffc20d829a965e684cdbb1",
+        "android_client_info": {
+          "package_name": "com.ask2901.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593730418980-bfivod5o2eamo6957497d7s79uj7ke3r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ask2901.myapp",
+            "certificate_hash": "114f74bc13ef972eddc5302a1dacf07c322f29dd"
+          }
+        },
+        {
+          "client_id": "593730418980-kthgp20238sh81l3a5el0gn2143m6ncu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ask2901.myapp",
+            "certificate_hash": "8c171d5fe9dbe8585d0f06f5d9e9eb3968e42682"
+          }
+        },
+        {
+          "client_id": "593730418980-sjheaje34f6rbeple7fecatuv1crg8g8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHoDdgqx52nFBdXlKQPM017IXvFi3e5tA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593730418980-sjheaje34f6rbeple7fecatuv1crg8g8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
