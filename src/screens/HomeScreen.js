@@ -8,8 +8,10 @@ import { TextInput } from "react-native";
 import Categories from "../components/categories.js";
 import { featured } from "../constants/index.js";
 import FeaturedRow from "../components/featuredRow.js";
+import firestore from "@react-native-firebase/firestore";
+import OfferSlider from "../components/offerSlider.js";
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView className="bg-white">
       <StatusBar barStyle="dark-content" />
@@ -33,22 +35,13 @@ const HomeScreen = ({navigation}) => {
         {/* categories */}
         <Categories />
 
+        {/* OfferSlider */}
+
+        <OfferSlider />
+
         {/* featured */}
 
-        <View className="mt-5">
-          {
-            [featured,featured,featured].map((item, index) => {
-              return(
-                <FeaturedRow
-                  key={index}
-                  title={item.title}
-                  description={item.description}
-                  restaurants={item.restaurant}
-                />
-              )
-          })
-          }
-        </View>
+        <View className="mt-5">{<FeaturedRow />}</View>
       </ScrollView>
     </SafeAreaView>
   );

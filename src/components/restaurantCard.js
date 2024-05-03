@@ -5,14 +5,16 @@ import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
 import { Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import firestore from '@react-native-firebase/firestore';
 
 const RestaurantCard = ({ item }) => {
   const navigation = useNavigation();
+  // console.log("item",item);
 
   return (
     <TouchableWithoutFeedback onPress={() => navigation.navigate("restaurant", { ...item })}>
       <View style={{ shadowColor: themeColors.bgColor(1), shadowRadius: 7 }} className="mr-6 bg-white rounded-3xl shadow-lg">
-        <Image className="h-36 w-64 rounded-t-3xl" source={item.image} />
+        <Image className="h-36 w-64 rounded-t-3xl" source={{uri:item.image}} />
         <View className="pb-4 px-3 space-y-2">
           <Text className="text-lg font-bold pt-2">{item.name}</Text>
           <View className="flex-row items-center space-x-1">
@@ -20,7 +22,7 @@ const RestaurantCard = ({ item }) => {
             <Text className="text-xs">
               <Text className="text-green-700">{item.stars}</Text>
               <Text className="text-gray-700">
-                ({item.reviews} review) .<Text className="font-semibold">{item.category}</Text>
+                ({item.review} review) .<Text className="font-semibold">{item.category}</Text>
               </Text>
             </Text>
           </View>

@@ -11,74 +11,78 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CartScreen from "./src/screens/CartScreen";
 import OrderPrep from "./src/screens/OrderPrep";
 import DelhiveryScreen from "./src/screens/DelhiveryScreen";
+import { store } from "./store.js";
+import { Provider } from "react-redux";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="welcomepage">
-        <Stack.Screen
-          name="welcomepage"
-          component={WelcomeScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="signup"
-          component={SignupScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="login"
-          component={LoginScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="home"
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="restaurant"
-          component={RestaurantScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="cart"
-          component={CartScreen}
-          options={{
-            headerShown: false,
-            presentation:"modal",
-          }}
-        />
-        <Stack.Screen
-          name="orderprep"
-          component={OrderPrep}
-          options={{
-            headerShown: false,
-            presentation:"fullScreenModal",
-          }}
-        />
-        <Stack.Screen
-          name="delhivery"
-          component={DelhiveryScreen}
-          options={{
-            headerShown: false,
-            presentation:"fullScreenModal",
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="welcomepage">
+          <Stack.Screen
+            name="welcomepage"
+            component={WelcomeScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="signup"
+            component={SignupScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="login"
+            component={LoginScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="home"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="restaurant"
+            component={RestaurantScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="cart"
+            component={CartScreen}
+            options={{
+              headerShown: false,
+              presentation: "modal",
+            }}
+          />
+          <Stack.Screen
+            name="orderprep"
+            component={OrderPrep}
+            options={{
+              headerShown: false,
+              presentation: "fullScreenModal",
+            }}
+          />
+          <Stack.Screen
+            name="delhivery"
+            component={DelhiveryScreen}
+            options={{
+              headerShown: false,
+              presentation: "fullScreenModal",
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

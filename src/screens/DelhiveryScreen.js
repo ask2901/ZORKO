@@ -2,21 +2,21 @@ import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { featured } from "../constants";
-import MapView, { Marker } from "react-native-maps";
+// import MapView, { Marker } from "react-native-maps";
 import { themeColors } from "../theme";
 import { TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import * as Icon from "react-native-feather";
-import { PROVIDER_GOOGLE } from "react-native-maps";
+// import { PROVIDER_GOOGLE } from "react-native-maps";
 
 const DelhiveryScreen = () => {
   const navigation = useNavigation();
   const restaurant = featured.restaurant[0];
 
   return (
-    <SafeAreaView>
+    
       <View className="flex-1">
-        <MapView
+        {/* <MapView
           provider={PROVIDER_GOOGLE}
           initialRegion={{
             latitude: restaurant.lat,
@@ -36,7 +36,7 @@ const DelhiveryScreen = () => {
             description={restaurant.description}
             pinColor={themeColors.bgColor(1)}
           />
-        </MapView>
+        </MapView> */}
         <View className="rounded-t-3xl bg-white -mt-12 relative">
           <View className="flex-row justify-between px-5 pt-10">
             <View>
@@ -65,7 +65,7 @@ const DelhiveryScreen = () => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    
   );
 };
 
