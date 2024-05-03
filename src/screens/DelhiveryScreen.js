@@ -8,10 +8,14 @@ import { TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import * as Icon from "react-native-feather";
 // import { PROVIDER_GOOGLE } from "react-native-maps";
+import { useSelector } from "react-redux";
+import { selectRestaurant } from "../../slices/restaurantSlice";
 
 const DelhiveryScreen = () => {
   const navigation = useNavigation();
   const restaurant = featured.restaurant[0];
+
+  // const restaurant = useSelector(selectRestaurant);
 
   return (
     

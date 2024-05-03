@@ -10,6 +10,8 @@ import CartIcon from "../components/cartIcon";
 import { StatusBar } from "expo-status-bar";
 import firestore from "@react-native-firebase/firestore";
 import { set } from "firebase/database";
+import { useDispatch } from "react-redux";
+import { setRestaurant } from "../../slices/restaurantSlice";
 
 const RestaurantScreen = () => {
   const { params } = useRoute();
@@ -17,6 +19,8 @@ const RestaurantScreen = () => {
   console.log("item", item.name);
   const navigation = useNavigation();
   const [fooddata, setFoodData] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     firestore()
@@ -26,15 +30,18 @@ const RestaurantScreen = () => {
       .get()
       .then((querySnapshot) => {
         console.log("Total users: ", querySnapshot.size);
-
-        querySnapshot.forEach((documentSnapshot) => {
-          console.log("User ID: ", documentSnapshot.id, documentSnapshot.data());
-          setFoodData((oldArray) => [...oldArray, documentSnapshot.data()]);
-        });
+        if (querySnapshot.size != fooddata.size) {
+          querySnapshot.forEach((documentSnapshot) => {
+            console.log("User ID: ", documentSnapshot.id, documentSnapshot.data());
+            setFoodData((oldArray) => [...oldArray, documentSnapshot.data()]);
+          });
+        }
       });
   }, []);
 
   if (fooddata.length > 0 && fooddata != null) {
+    dispatch(setRestaurant({fooddata}));
+
     return (
       // <View></View>
 
@@ -44,7 +51,7 @@ const RestaurantScreen = () => {
           <StatusBar style="light" />
           <ScrollView>
             <View className="relative">
-              <Image className="h-80 w-full" source={{uri:item.image}} />
+              <Image className="h-80 w-full" source={{ uri: item.image }} />
               <TouchableOpacity onPress={() => navigation.goBack()} className="absolute top-14 left-4 bg-gray-50 p-2 rounded-full shadow">
                 <Icon.ArrowLeft strokeWidth={3} stroke={themeColors.bgColor(1)} />
               </TouchableOpacity>
