@@ -8,7 +8,9 @@
   </p>
 </p>
 
-<img src="https://github.com/ask2901/ZORKO/assets/109283594/c7fa3206-06a2-418c-ae7a-633064e5b707" width="40%">
+<p align="center">
+    <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://github.com/ask2901/ZORKO/assets/109283594/c7fa3206-06a2-418c-ae7a-633064e5b707" width="70%"/>
+  </p>
 
 ## Features
 
