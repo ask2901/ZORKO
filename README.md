@@ -8,6 +8,7 @@
   </p>
 </p>
 
+<img src="https://github.com/ask2901/EmployMe/assets/109283594/e16fc894-d790-4a6b-9a58-109b1d205947" width="60%">
 
 ## Features
 
