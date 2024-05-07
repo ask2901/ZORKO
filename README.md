@@ -14,7 +14,7 @@
 
 ## Features
 
--Designed and implemented a user-friendly interface allowing seamless setting of spending limits for meals upon app launch, enhancing user convenience.\
+- Designed and implemented a user-friendly interface allowing seamless setting of spending limits for meals upon app launch, enhancing user convenience.\
 -Integrated features enabling access to nearby ZORKO outlets using Google Maps API.
 -Implemented robust security measures, including secure login via number and OTP verification, prioritizing the safety and integrity of user accounts.
 -Built intuitive admin dashboard, facilitating easy backend management for administrators, particularly in editing menu items and other content.
