@@ -8,7 +8,7 @@
   </p>
 </p>
 
-<img src="https://github.com/ask2901/EmployMe/assets/109283594/e16fc894-d790-4a6b-9a58-109b1d205947" width="60%">
+<img src="https://github.com/ask2901/ZORKO/assets/109283594/af077551-40bd-4db9-a789-bd1f4fe054f5" width="60%">
 
 ## Features
 
