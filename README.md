@@ -52,7 +52,7 @@
 ## Screenshots
   
 - ## Android
-**User Interface**
+## User Interface
 <img src="https://github.com/ask2901/ZORKO/assets/109283594/6f794045-e1da-44c8-9fc1-c8c8f9603cf4" width="23%">
 <img src="https://github.com/ask2901/ZORKO/assets/109283594/987b1ab9-4c2d-47a2-9d5e-ec3f2f27faee" width="23%">    <img src="https://github.com/ask2901/ZORKO/assets/109283594/d193ac5b-138f-4f6c-a1f8-cb157a499e2b" width="23%">     <img src="https://github.com/ask2901/ZORKO/assets/109283594/5062316a-122e-4def-9863-169f674769d6" width="23%">     <img src="https://github.com/ask2901/ZORKO/assets/109283594/c717196e-7262-4623-bbd3-e7a00f94f40c" width="23%">     <img src="https://github.com/ask2901/ZORKO/assets/109283594/4bf803bf-510c-491b-8796-8dbd46b3b7aa" width="23%">     <img src="https://github.com/ask2901/ZORKO/assets/109283594/2b2c1227-44ac-4a5c-a364-3c934a0f899c" width="23%">     <img src="https://github.com/ask2901/ZORKO/assets/109283594/ed5162f6-4726-4fed-ae5b-39efd0efc1be" width="23%">
 
