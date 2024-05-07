@@ -58,6 +58,6 @@
 
 ## Admin Interface
 
-  <img src="https://github.com/ask2901/ZORKO/assets/109283594/0dceda5f-5d53-4757-ac42-2fe2b350fe29" width="50%">
+  <img src="https://github.com/ask2901/ZORKO/assets/109283594/0dceda5f-5d53-4757-ac42-2fe2b350fe29" width="70%">
 
 ## Thank You ❤️
