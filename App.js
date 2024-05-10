@@ -13,8 +13,98 @@ import OrderPrep from "./src/screens/OrderPrep";
 import DelhiveryScreen from "./src/screens/DelhiveryScreen";
 import { store } from "./store.js";
 import { Provider } from "react-redux";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CommunityScreen from "./src/screens/CommunityScreen.js";
+import * as Icon from "react-native-feather";
+import { themeColors } from "./src/theme/index.js";
+import { FontAwesome6 } from "@expo/vector-icons";
+import WalletScreen from "./src/screens/WalletScreen.js";
+import { FontAwesome5 } from "@expo/vector-icons";
+
+const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
+
+const screenOptions = {
+  headerShown: false,
+  tabBarShowLabel: false,
+  tabBarStyle: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    left: 0,
+    elevation: 0,
+    height: 60,
+    backgroundColor: "#ffffff",
+  },
+};
+
+function TabNav() {
+  return (
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            // console.log("focused", focused);
+            {
+              return focused ? (
+                <View className="rounded-3xl p-2" style={{ alignItems: "center", justifyContent: "center", top: 3, backgroundColor: themeColors.bgColor(1) }}>
+                  <Icon.Home stroke={focused ? "#ffff" : "#000000"} width={25} height={25} />
+                </View>
+              ) : (
+                <View className="rounded-3xl p-2" style={{ alignItems: "center", justifyContent: "center", top: 3 }}>
+                  <Icon.Home stroke={focused ? "#ffff" : "#000000"} width={27} height={27} />
+                </View>
+              );
+            }
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Community"
+        component={CommunityScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            // console.log("focused", focused);
+            {
+              return focused ? (
+                <View className="rounded-3xl p-2" style={{ alignItems: "center", justifyContent: "center", top: 3, backgroundColor: themeColors.bgColor(1) }}>
+                  <FontAwesome6 name="people-group" size={22} color="white" />
+                </View>
+              ) : (
+                <View className="rounded-3xl p-2" style={{ alignItems: "center", justifyContent: "center", top: 3 }}>
+                  <FontAwesome6 name="people-group" size={25} color="black" />
+                </View>
+              );
+            }
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Wallet"
+        component={WalletScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            // console.log("focused", focused);
+            {
+              return focused ? (
+                <View className="rounded-3xl p-2" style={{ alignItems: "center", justifyContent: "center", top: 3, backgroundColor: themeColors.bgColor(1) }}>
+                  <FontAwesome5 name="wallet" size={22} color="white" />
+                </View>
+              ) : (
+                <View className="rounded-3xl p-2" style={{ alignItems: "center", justifyContent: "center", top: 3 }}>
+                  <FontAwesome5 name="wallet" size={25} color="black" />
+                </View>
+              );
+            }
+          },
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -29,13 +119,6 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="signup"
-            component={SignupScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
             name="login"
             component={LoginScreen}
             options={{
@@ -43,8 +126,15 @@ export default function App() {
             }}
           />
           <Stack.Screen
+            name="signup"
+            component={SignupScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
             name="home"
-            component={HomeScreen}
+            component={TabNav}
             options={{
               headerShown: false,
             }}
