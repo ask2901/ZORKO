@@ -26,7 +26,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={{ backgroundColor: themeColors.bgColor(1) }} className="p-3 rounded-full">
-          <Icon.Sliders height="20" width="20" stroke="white" />
+          <Icon.User height="20" width="20" stroke="white" strokeWidth={3}/>
         </View>
       </View>
 

@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
@@ -20,6 +21,7 @@ import { themeColors } from "./src/theme/index.js";
 import { FontAwesome6 } from "@expo/vector-icons";
 import WalletScreen from "./src/screens/WalletScreen.js";
 import { FontAwesome5 } from "@expo/vector-icons";
+import CustomDrawer from './src/navigation/CustomDrawer'
 
 const Tab = createBottomTabNavigator();
 
@@ -44,7 +46,7 @@ function TabNav() {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={CustomDrawer}
         options={{
           tabBarIcon: ({ focused }) => {
             // console.log("focused", focused);
