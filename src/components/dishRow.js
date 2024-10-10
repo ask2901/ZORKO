@@ -11,9 +11,12 @@ const DishRow = ({item}) => {
 
     const dispatch = useDispatch();
     const totalItem=useSelector(state=>selectItemsById(state,item.id,item.restroname));
+
+    const money=100;
  
     const handleIncrease = () => {
         dispatch(addtoCart({...item}));
+        // console.log(item.id);
     }
     const handleDecrease = () => {
         dispatch(removefromCart({id:item.id}));
@@ -21,6 +24,9 @@ const DishRow = ({item}) => {
 
     const cartItems=useSelector(selectCartItems);
     // console.log("cartItems",cartItems);
+
+    // console.log({totalItem});
+    // console.log(item);
 
   return (
     <View className="flex-row items-center bg-white p-3 rounded-3xl shadow-2xl mb-3 mx-2">

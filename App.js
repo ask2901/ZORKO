@@ -22,26 +22,35 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import WalletScreen from "./src/screens/WalletScreen.js";
 import { FontAwesome5 } from "@expo/vector-icons";
 import CustomDrawer from './src/navigation/CustomDrawer'
+import { useSelector } from 'react-redux';
+import { selectTabBarVisibility } from './slices/scrollSlice.js';
+import ChoiceScreen from './src/screens/ChoiceScreen.js';
 
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
-const screenOptions = {
-  headerShown: false,
-  tabBarShowLabel: false,
-  tabBarStyle: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    left: 0,
-    elevation: 0,
-    height: 60,
-    backgroundColor: "#ffffff",
-  },
-};
-
 function TabNav() {
+
+  const tabBarVisible = useSelector(selectTabBarVisibility);
+
+  const screenOptions = {
+    headerShown: false,
+    tabBarShowLabel: false,
+    tabBarStyle: {
+      position: "absolute",
+      bottom: 0,
+      right: 0,
+      left: 0,
+      elevation: 0,
+      // height:60,
+      backgroundColor: "#ffffff",
+      display: tabBarVisible ? 'flex' : 'none',
+    },
+  };
+
+  
+
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
@@ -167,6 +176,14 @@ export default function App() {
           <Stack.Screen
             name="delhivery"
             component={DelhiveryScreen}
+            options={{
+              headerShown: false,
+              presentation: "fullScreenModal",
+            }}
+          />
+          <Stack.Screen
+            name="choicescreen"
+            component={ChoiceScreen}
             options={{
               headerShown: false,
               presentation: "fullScreenModal",

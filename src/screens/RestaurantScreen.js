@@ -20,8 +20,10 @@ const RestaurantScreen = () => {
   const navigation = useNavigation();
   const [fooddata, setFoodData] = useState([]);
 
-  const dispatch = useDispatch();
+  const money=0;
 
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     firestore()
       .collection("food")
@@ -29,10 +31,10 @@ const RestaurantScreen = () => {
       .collection("items")
       .get()
       .then((querySnapshot) => {
-        console.log("Total users: ", querySnapshot.size);
+        // console.log("Total users: ", querySnapshot.size);
         if (querySnapshot.size != fooddata.size) {
           querySnapshot.forEach((documentSnapshot) => {
-            console.log("User ID: ", documentSnapshot.id, documentSnapshot.data());
+            // console.log("User ID: ", documentSnapshot.id, documentSnapshot.data());
             setFoodData((oldArray) => [...oldArray, documentSnapshot.data()]);
           });
         }
@@ -77,14 +79,20 @@ const RestaurantScreen = () => {
                 <Text className="text-gray-500 mt-2">{item.desc}</Text>
               </View>
             </View>
-            <View className="pb-36 bg-gray-50">
+            <View className="pb-40 bg-gray-50">
               <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
 
               {/* dishes */}
-
+              
               {fooddata.map((dish, index) => {
-                return <DishRow key={index} item={{ ...dish }} />;
+
+                console.log("dish",dish.price);
+                if(dish.price>=money)
+                {
+                  return <DishRow key={index} item={{ ...dish }} />;
+                }
               })}
+              
             </View>
           </ScrollView>
         </View>

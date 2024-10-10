@@ -42,11 +42,6 @@ const LoginScreen = ({ navigation }) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // Signed in
-        // var user = userCredential.user;
-        // console.log(user);
-        // ...
-
         navigation.navigate("welcomepage");
       })
       .catch((error) => {

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Touchable } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -10,8 +10,24 @@ import { featured } from "../constants/index.js";
 import FeaturedRow from "../components/featuredRow.js";
 import firestore from "@react-native-firebase/firestore";
 import OfferSlider from "../components/offerSlider.js";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useSelector, useDispatch } from 'react-redux';
+import { showTabBar, hideTabBar, selectTabBarVisibility } from '../../slices/scrollSlice.js';
 
 const HomeScreen = ({ navigation }) => {
+
+  const dispatch = useDispatch();
+  const tabBarVisible = useSelector(selectTabBarVisibility);
+
+  const handleScroll = (event) => {
+    const currentOffset = event.nativeEvent.contentOffset.y;
+    if (currentOffset > 50) {
+      dispatch(hideTabBar());
+    } else {
+      dispatch(showTabBar());
+    }
+  };
+
   return (
     <SafeAreaView className="bg-white">
       <StatusBar barStyle="dark-content" />
@@ -26,12 +42,14 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={{ backgroundColor: themeColors.bgColor(1) }} className="p-3 rounded-full">
-          <Icon.User height="20" width="20" stroke="white" strokeWidth={3}/>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Icon.User height="20" width="20" stroke="white" strokeWidth={3}/>
+          </TouchableOpacity>
         </View>
       </View>
 
       {/*main*/}
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
+      <ScrollView onScroll={handleScroll} scrollEventThrottle={16} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 20 }}>
         {/* categories */}
         <Categories />
 
@@ -40,6 +58,10 @@ const HomeScreen = ({ navigation }) => {
         <OfferSlider />
 
         {/* featured */}
+
+        <View className="mt-5">{<FeaturedRow />}</View>
+
+        {/*Most_Ordered*/}
 
         <View className="mt-5">{<FeaturedRow />}</View>
       </ScrollView>

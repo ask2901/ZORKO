@@ -10,36 +10,63 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRestaurant } from "../../slices/restaurantSlice";
 import { removefromCart, selectCartItems, selectCartTotal } from "../../slices/cartSlice";
+import ItemRecom from "../components/itemRecom";
 
 const CartScreen = () => {
   // const restaurant = featured.restaurant[0];
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
   const restaurant = useSelector(selectRestaurant);
-  const cartItems=useSelector(selectCartItems);
-  const cartTotal=useSelector(selectCartTotal);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
+  const [recomdata, setRecomData] = useState([]);
   const [groupedItems, setGroupedItems] = useState([]);
+
+  const [recommendations, setRecommendations] = useState([]);
+
+  const requestBody = {
+    name: restaurant.fooddata[0].restroname,
+  };
+
+  const fetchRecommendations = async () => {
+    try {
+      const response = await fetch(`http://192.168.35.82:5000/recommend`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+      const data = await response.json();
+      console.log(data);
+      setRecomData(data);
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchRecommendations();
+  }, []);
 
   useEffect(() => {
     const grouped = cartItems.reduce((group, item) => {
-      if(group[item.restroname+item.foodname])
-      {
-        group[item.restroname+item.foodname].push(item);
-      }
-      else{
-        group[item.restroname+item.foodname]=[item];
+      if (group[item.restroname + item.foodname]) {
+        group[item.restroname + item.foodname].push(item);
+      } else {
+        group[item.restroname + item.foodname] = [item];
       }
       return group;
-    },{});
+    }, {});
     setGroupedItems(grouped);
-  },[cartItems]);
+  }, [cartItems]);
 
-  console.log("foodData", restaurant);
-  let delhiveryfee=2;
+  // console.log("foodData", restaurant);
+  let delhiveryfee = 2;
+
+  // console.log(restaurant);
 
   return (
-    // <View></View>
     <View className="bg-white flex-1">
       {/* backbutton */}
       <View className="relative py-4 mt-6 mx-3 shadow-sm">
@@ -65,42 +92,53 @@ const CartScreen = () => {
       </View>
 
       {/* dishes */}
+      <View style={{ flex: 1 }} className="bg-gray-50">
+        <ScrollView showsVerticalScrollIndicator={false} className="bg-gray-50 pt-5" style={{ flexGrow: 0 }}>
+          {Object.entries(groupedItems).map((key, item) => {
+            let dish = key[1][0];
+            {
+              /* console.log("dish",groupedItems); */
+            }
+            return (
+              <View>
+                <View key={key} className="flex-row items-center space-x-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3 shadow-md">
+                  <Text className="font-bold" style={{ color: themeColors.text }}>
+                    {key[1].length} x
+                  </Text>
+                  <Image source={{ uri: dish.image }} className="h-14 w-14 rounded-full" />
+                  <Text className="flex-1 font-bold text-gray-700">{dish.foodname}</Text>
+                  <Text className="font-semibold text-base">₹{dish.price}</Text>
+                  <TouchableOpacity onPress={() => dispatch(removefromCart({ id: dish.id }))} className="p-1 rounded-full" style={{ backgroundColor: themeColors.bgColor(1) }}>
+                    <Icon.Minus strokeWidth={2} stroke="white" height={20} width={20} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            );
+          })}
+        </ScrollView>
+        {/* Recommendation */}
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 50 }} className="bg-gray-50 pt-5">
-        {Object.entries(groupedItems).map((key,item) => {
-          let dish=key[1][0];
-          
-          {/* console.log("dish",groupedItems); */}
-          return (
-            <View key={key} className="flex-row items-center space-x-3 py-2 px-4 bg-white rounded-3xl mx-2 mb-3 shadow-md">
-              <Text className="font-bold" style={{ color: themeColors.text }}>
-                {key[1].length} x
-              </Text>
-              <Image source={{ uri: dish.image }} className="h-14 w-14 rounded-full" />
-              <Text className="flex-1 font-bold text-gray-700">{dish.foodname}</Text>
-              <Text className="font-semibold text-base">${dish.price}</Text>
-              <TouchableOpacity onPress={()=>dispatch(removefromCart({id:dish.id}))} className="p-1 rounded-full" style={{ backgroundColor: themeColors.bgColor(1) }}>
-                <Icon.Minus strokeWidth={2} stroke="white" height={20} width={20} />
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </ScrollView>
+        <View className="flex flex-row justify-center">
+          {recomdata.map((dish, index) => {
+            return <ItemRecom key={index} item={{ ...dish }} />;
+          })}
+        </View>
+      </View>
 
       {/* totals */}
 
       <View style={{ backgroundColor: themeColors.bgColor(0.2) }} className="p-6 px-8 rounded-t-3xl space-y-4">
         <View className="flex-row justify-between">
           <Text className="text-gray-700">Subtotal</Text>
-          <Text className="text-gray-700">${cartTotal}</Text>
+          <Text className="text-gray-700">₹{cartTotal}</Text>
         </View>
         <View className="flex-row justify-between">
           <Text className="text-gray-700">Delhivery Fee</Text>
-          <Text className="text-gray-700">${delhiveryfee}</Text>
+          <Text className="text-gray-700">₹{delhiveryfee}</Text>
         </View>
         <View className="flex-row justify-between">
           <Text className="text-gray-700 font-extrabold">Order Total</Text>
-          <Text className="text-gray-700 font-extrabold">${cartTotal+delhiveryfee}</Text>
+          <Text className="text-gray-700 font-extrabold">₹{cartTotal + delhiveryfee}</Text>
         </View>
         <View>
           <TouchableOpacity onPress={() => navigation.navigate("orderprep")} style={{ backgroundColor: themeColors.bgColor(1) }} className="rounded-full p-3">
